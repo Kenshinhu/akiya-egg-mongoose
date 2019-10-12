@@ -3,9 +3,12 @@
 const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
-  async index() {
-    this.ctx.body = 'hi, ' + this.app.plugins.akiyaEggMongoose.name;
+
+  async create() {
+    const { body } = this.ctx.request;
+    this.ctx.body = await this.ctx.service.customer.save(body);
   }
+
 }
 
 module.exports = HomeController;

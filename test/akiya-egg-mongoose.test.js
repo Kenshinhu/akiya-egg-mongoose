@@ -14,10 +14,12 @@ describe('test/akiya-egg-mongoose.test.js', () => {
   after(() => app.close());
   afterEach(mock.restore);
 
-  it('should GET /', () => {
+  it('should POST /', () => {
+    app.mockCsrf();
     return app.httpRequest()
-      .get('/')
-      .expect('hi, akiyaEggMongoose')
+      .post('/customer')
+      .send({ name: 'john' })
+      .set('Accept', 'application/json')
       .expect(200);
   });
 });

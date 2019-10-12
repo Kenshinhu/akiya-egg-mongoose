@@ -1,15 +1,18 @@
 'use strict';
 const MongooseBaseService = Symbol('Application#MongooseBaseService');
 
-const mongooseService = require('../../lib/mongoose');
+const { MongooseService } = require('../../lib/mongoose');
 
+const { mongooseModel: Model } = require('../../lib/model');
 module.exports = {
-  get MongoseBaseService() {
+  // Mongose 基础服务
+  get mongooseBaseService() {
     if (!this[MongooseBaseService]) {
-      mongooseService = new mongooseService();
+      this[MongooseBaseService] = MongooseService;
     }
     return this[MongooseBaseService];
   },
-
-
+  mongooseModel(config = {}) {
+    return Model(this.mongoose, config);
+  },
 };

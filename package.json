@@ -1,9 +1,12 @@
 {
   "name": "egg-akiya-egg-mongoose",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "eggPlugin": {
-    "name": "akiyaEggMongoose"
+    "name": "akiyaMongoose",
+    "dependencies": [
+      "mongoose"
+    ]
   },
   "keywords": [
     "egg",
@@ -11,6 +14,7 @@
     "egg-plugin"
   ],
   "dependencies": {
+    "loadsh": "0.0.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26"
   },
@@ -21,6 +25,7 @@
     "egg-bin": "^4.11.0",
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
+    "egg-mongoose": "^3.2.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0"
   },
@@ -37,10 +42,9 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
-    "agent.js",
-    "config",
-    "app"
+    "app",
+    "lib",
+    "config"
   ],
   "ci": {
     "version": "8, 10"
