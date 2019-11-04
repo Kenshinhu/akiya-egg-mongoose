@@ -13,6 +13,17 @@ module.exports = {
     return this[MongooseBaseService];
   },
   mongooseModel(config = {}) {
-    return Model(this.mongoose, config);
+    // const { mongoose } = this;
+    const { akiyaEggMongoose } = this.config;
+    const { clientId, isMultiConn = false } = akiyaEggMongoose;
+
+    const mongodb = isMultiConn ? this.mongooseDB.get(config.clientId || clientId) : this.mongoose;
+    return Model({
+      Schema: this.mongoose.Schema,
+      mongoose: mongodb,
+    }, {
+      ...akiyaEggMongoose,
+      ...config,
+    });
   },
 };
